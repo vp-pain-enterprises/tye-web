@@ -6,7 +6,7 @@
   <meta name="description" content="Tye — remember what matters about the people you love. Track relationships, log memories, and get personalized suggestions.">
   <meta name="theme-color" content="#0A0A0A">
 
-  <!-- Open Graph (Reddit, iMessage previews) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Tye — Relationships, remembered.">
   <meta property="og:description" content="A personal vault for the people who matter most. Memories, milestones, and smart suggestions — all in one place.">
   <meta property="og:image" content="og-image.png">
@@ -22,36 +22,39 @@
   <title>Tye — Relationships, remembered.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     /* ── RESET & TOKENS ─────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0A0A0A;
-      --s1:       #151515;
-      --s2:       #1D1D1D;
-      --border:   #262626;
-      --pink:     #D4547A;
-      --pink-dim: rgba(212,84,122,0.15);
-      --pink-glow:rgba(212,84,122,0.08);
-      --text:     #F5F5F5;
-      --muted:    #8E8E93;
-      --hint:     #48484A;
-      --green:    #4CAF50;
-      --orange:   #EB9627;
+      --bg:         #0A0A0A;
+      --s1:         #151515;
+      --s2:         #1D1D1D;
+      --border:     #262626;
+      --orange:     #FF6A35;
+      --orange-dim: rgba(255, 106, 53, 0.12);
+      --orange-mid: rgba(255, 106, 53, 0.35);
+      --text:       #F6F6F4;
+      --text2:      #B0B0B0;
+      --text3:      #606060;
+      --hint:       #404040;
 
       --r-sm: 8px;
       --r-md: 12px;
       --r-lg: 16px;
-      --r-xl: 24px;
+      --r-xl: 20px;
+      --r-full: 999px;
+
+      --font-title: 'Inter Tight', sans-serif;
+      --font-mono:  'Geist Mono', monospace;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-title);
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -75,7 +78,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10,10,10,0.85);
+      background: rgba(10, 10, 10, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -92,10 +95,11 @@
     }
 
     .nav-logo {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--pink);
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--orange);
     }
 
     .nav-links {
@@ -105,9 +109,11 @@
     }
 
     .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--text3);
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
@@ -117,26 +123,40 @@
       align-items: center;
       gap: 8px;
       padding: 10px 22px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 600;
+      border-radius: var(--r-full);
+      font-family: var(--font-title);
+      font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
       border: none;
     }
 
     .btn-primary {
-      background: var(--pink);
+      background: var(--orange);
       color: #fff;
     }
-    .btn-primary:hover { background: #c0446a; transform: translateY(-1px); }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 
     .btn-outline {
       background: transparent;
       color: var(--text);
       border: 1.5px solid var(--border);
     }
-    .btn-outline:hover { border-color: var(--muted); }
+    .btn-outline:hover { border-color: var(--text3); }
+
+    /* ── MONO LABEL ─────────────────────────────────────────── */
+    .mono-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
 
     /* ── HERO ───────────────────────────────────────────────── */
     .hero {
@@ -152,40 +172,44 @@
       top: -200px; left: 50%;
       transform: translateX(-50%);
       width: 700px; height: 700px;
-      background: radial-gradient(ellipse, rgba(212,84,122,0.12) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(255, 106, 53, 0.09) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
-      background: var(--pink-dim);
-      border: 1px solid rgba(212,84,122,0.3);
-      border-radius: 999px;
-      font-size: 13px;
+      gap: 8px;
+      padding: 5px 16px;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-mid);
+      border-radius: var(--r-full);
+      font-family: var(--font-mono);
+      font-size: 11px;
       font-weight: 600;
-      color: var(--pink);
-      margin-bottom: 32px;
+      letter-spacing: 0.8px;
+      color: var(--orange);
+      margin-bottom: 36px;
     }
 
     h1 {
-      font-size: clamp(42px, 6vw, 72px);
-      font-weight: 800;
-      line-height: 1.1;
+      font-family: var(--font-title);
+      font-size: clamp(44px, 6.5vw, 76px);
+      font-weight: 700;
+      line-height: 1.08;
       letter-spacing: -1.5px;
       margin-bottom: 24px;
+      color: var(--text);
     }
 
-    h1 span { color: var(--pink); }
-
     .hero-sub {
-      font-size: clamp(17px, 2vw, 20px);
-      color: var(--muted);
-      max-width: 540px;
-      margin: 0 auto 48px;
+      font-family: var(--font-title);
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text2);
+      max-width: 520px;
+      margin: 0 auto 52px;
       line-height: 1.7;
+      font-weight: 400;
     }
 
     .hero-cta {
@@ -199,17 +223,27 @@
     .appstore-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 24px;
+      gap: 14px;
+      padding: 13px 26px;
       background: var(--s1);
       border: 1.5px solid var(--border);
       border-radius: var(--r-lg);
-      font-size: 15px;
+      font-family: var(--font-title);
+      font-size: 14px;
       font-weight: 600;
       transition: all 0.2s;
     }
-    .appstore-badge:hover { border-color: var(--muted); transform: translateY(-2px); }
+    .appstore-badge:hover { border-color: var(--text3); transform: translateY(-2px); }
     .appstore-badge .icon { font-size: 24px; }
+    .appstore-badge small {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--text3);
+      letter-spacing: 0.3px;
+      margin-bottom: 2px;
+    }
 
     /* ── PHONE GRID ─────────────────────────────────────────── */
     .phone-row {
@@ -230,70 +264,75 @@
     .phone-wrap img {
       display: block;
       border-radius: 36px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
     }
 
     .phone-wrap.primary img   { width: 220px; }
-    .phone-wrap.secondary img { width: 190px; opacity: 0.85; }
-    .phone-wrap.tertiary img  { width: 165px; opacity: 0.65; }
+    .phone-wrap.secondary img { width: 192px; opacity: 0.85; }
+    .phone-wrap.tertiary img  { width: 166px; opacity: 0.6; }
+
+    /* ── SECTION DIVIDER ────────────────────────────────────── */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 auto;
+      max-width: 600px;
+    }
 
     /* ── FEATURES ───────────────────────────────────────────── */
     .features-header {
       text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .label {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--pink);
-      text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 56px;
     }
 
     h2 {
-      font-size: clamp(30px, 4vw, 46px);
-      font-weight: 800;
+      font-family: var(--font-title);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
       letter-spacing: -0.8px;
-      line-height: 1.15;
+      line-height: 1.12;
+      color: var(--text);
     }
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      gap: 16px;
     }
 
     .feature-card {
       background: var(--s1);
       border: 1px solid var(--border);
       border-radius: var(--r-xl);
-      padding: 32px 28px;
+      padding: 28px 24px;
       transition: border-color 0.2s, transform 0.2s;
     }
     .feature-card:hover {
-      border-color: rgba(212,84,122,0.4);
+      border-color: var(--orange-mid);
       transform: translateY(-4px);
     }
 
     .feature-icon {
-      font-size: 36px;
-      margin-bottom: 20px;
+      font-size: 30px;
+      margin-bottom: 16px;
       display: block;
     }
 
     .feature-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
     }
 
     .feature-card p {
+      font-family: var(--font-title);
       font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
+      color: var(--text2);
+      line-height: 1.6;
+      font-weight: 400;
     }
 
     /* ── HOW IT WORKS ───────────────────────────────────────── */
@@ -313,10 +352,10 @@
     .how-phone img {
       width: 300px;
       border-radius: 40px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
     }
 
-    .steps { display: flex; flex-direction: column; gap: 32px; }
+    .steps { display: flex; flex-direction: column; gap: 28px; }
 
     .step {
       display: flex;
@@ -326,20 +365,34 @@
 
     .step-num {
       flex-shrink: 0;
-      width: 36px; height: 36px;
-      background: var(--pink-dim);
-      border: 1px solid rgba(212,84,122,0.3);
+      width: 34px; height: 34px;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-mid);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 700;
-      color: var(--pink);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--orange);
     }
 
-    .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
-    .step p  { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .step h3 {
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text);
+    }
+    .step p {
+      font-family: var(--font-title);
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.6;
+      font-weight: 400;
+    }
 
-    /* ── HEALTH SCORE ───────────────────────────────────────── */
-    .health-section { background: var(--s1); }
+    /* ── HEALTH / STATS ─────────────────────────────────────── */
+    .health-section { background: var(--s1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
     .health-inner {
       display: flex;
@@ -350,110 +403,159 @@
     }
 
     .health-ring-demo {
-      width: 160px; height: 160px;
-      position: relative;
+      width: 148px; height: 148px;
     }
     .health-ring-demo svg { width: 100%; height: 100%; }
 
     .health-stats {
       display: flex;
-      gap: 40px;
+      gap: 48px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
-    .stat {
-      text-align: center;
-    }
+    .stat { text-align: center; }
+
     .stat-value {
-      font-size: 42px;
-      font-weight: 800;
-      color: var(--pink);
+      font-family: var(--font-title);
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--orange);
       display: block;
+      letter-spacing: -1px;
     }
     .stat-label {
-      font-size: 13px;
-      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.3px;
+      margin-top: 4px;
+      display: block;
     }
 
     /* ── PRICING ────────────────────────────────────────────── */
     .pricing-card {
-      max-width: 480px;
+      max-width: 460px;
       margin: 0 auto;
       background: var(--s1);
-      border: 1.5px solid rgba(212,84,122,0.4);
+      border: 1px solid var(--border);
       border-radius: var(--r-xl);
-      padding: 48px 40px;
+      padding: 40px 36px;
       text-align: center;
       position: relative;
     }
 
     .pricing-badge {
-      position: absolute;
-      top: -15px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--pink);
-      color: #fff;
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-mid);
+      border-radius: var(--r-full);
+      padding: 4px 14px;
+      margin-bottom: 24px;
+    }
+    .pricing-badge span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--orange);
+      letter-spacing: 0.8px;
+    }
+
+    .pricing-title {
+      font-family: var(--font-title);
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: 1px;
-      padding: 4px 18px;
-      border-radius: 999px;
-      white-space: nowrap;
+      color: var(--text);
+      margin-bottom: 16px;
     }
 
     .pricing-price {
-      margin: 24px 0 8px;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
     }
     .pricing-price .old {
+      font-family: var(--font-title);
       font-size: 22px;
-      color: var(--hint);
+      font-weight: 500;
+      color: var(--text3);
       text-decoration: line-through;
-      margin-right: 8px;
     }
     .pricing-price .new {
+      font-family: var(--font-title);
       font-size: 52px;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--text);
+      letter-spacing: -2px;
     }
+
+    .pricing-once {
+      display: inline-flex;
+      align-items: center;
+      background: var(--s2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 4px 14px;
+      margin-bottom: 28px;
+    }
+    .pricing-once span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.6px;
+    }
+
     .pricing-note {
+      font-family: var(--font-title);
       font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 36px;
+      color: var(--text3);
+      margin-bottom: 28px;
+      line-height: 1.6;
     }
 
     .pricing-features {
       list-style: none;
-      margin: 0 0 40px;
+      margin: 0 0 32px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       text-align: left;
     }
     .pricing-features li {
       display: flex;
       gap: 12px;
-      font-size: 15px;
+      font-family: var(--font-title);
+      font-size: 14px;
+      color: var(--text2);
+      font-weight: 400;
     }
-    .pricing-features .check { color: var(--green); font-weight: 700; }
+    .pricing-features .check {
+      color: var(--orange);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
 
     .pricing-sub {
-      margin-top: 20px;
-      font-size: 13px;
-      color: var(--hint);
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.2px;
     }
 
     /* ── CTA SECTION ────────────────────────────────────────── */
-    .cta-section {
-      text-align: center;
-    }
-
+    .cta-section { text-align: center; }
     .cta-section h2 { margin-bottom: 16px; }
     .cta-section p {
-      color: var(--muted);
-      font-size: 18px;
+      font-family: var(--font-title);
+      color: var(--text2);
+      font-size: 17px;
       margin-bottom: 40px;
+      font-weight: 400;
     }
 
     /* ── FOOTER ─────────────────────────────────────────────── */
@@ -474,10 +576,11 @@
     }
 
     .footer-logo {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--pink);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--orange);
     }
 
     .footer-links {
@@ -486,24 +589,21 @@
       list-style: none;
     }
     .footer-links a {
-      font-size: 13px;
-      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text3);
       transition: color 0.2s;
+      letter-spacing: 0.3px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
-    .footer-links a:hover { color: var(--text); }
+    .footer-links a:hover { color: var(--text2); }
 
     .footer-copy {
-      font-size: 13px;
+      font-family: var(--font-mono);
+      font-size: 11px;
       color: var(--hint);
-    }
-
-    /* ── DIVIDER ────────────────────────────────────────────── */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 0 auto;
-      max-width: 600px;
+      letter-spacing: 0.2px;
     }
 
     /* ── RESPONSIVE ─────────────────────────────────────────── */
@@ -513,9 +613,9 @@
       .nav-links { display: none; }
       .phone-wrap.tertiary { display: none; }
       .phone-wrap.secondary img { width: 160px; }
-      .phone-wrap.primary img { width: 190px; }
+      .phone-wrap.primary img { width: 192px; }
       .features-grid { grid-template-columns: 1fr; }
-      .pricing-card { padding: 40px 24px; }
+      .pricing-card { padding: 32px 20px; }
       .footer-inner { flex-direction: column; text-align: center; }
       .health-stats { gap: 28px; }
     }
@@ -543,18 +643,21 @@
   <div class="container">
     <div class="hero-badge">✦ Now available on iPhone</div>
 
-    <h1>Relationships,<br><span>remembered.</span></h1>
+    <h1>Relationships<br>take attention.</h1>
 
     <p class="hero-sub">
-      A personal vault for the people who matter most.
-      Memories, milestones, and smart suggestions —
-      so you never drift from the ones you love.
+      The people who matter most deserve more than good intentions.
+      A personal vault for memories, milestones, and the details
+      that make relationships real.
     </p>
 
     <div class="hero-cta" id="download">
       <a href="https://apps.apple.com/app/tye" class="appstore-badge">
         <span class="icon">🍎</span>
-        <span>Download on the<br><strong>App Store</strong></span>
+        <div>
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
       </a>
     </div>
 
@@ -585,7 +688,7 @@
 <section id="features">
   <div class="container">
     <div class="features-header">
-      <span class="label">What Tye does</span>
+      <span class="mono-label">What Tye does</span>
       <h2>Everything about everyone<br>you care about</h2>
     </div>
 
@@ -601,8 +704,8 @@
         <p>Log moments as they happen. Tye remembers every movie night, every conversation, every shared experience.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">⭐</span>
-        <h3>Smart surprises</h3>
+        <span class="feature-icon">✨</span>
+        <h3>Smart suggestions</h3>
         <p>Tye analyses your relationships and suggests the right gesture at the right moment — never too late, never too generic.</p>
       </div>
       <div class="feature-card">
@@ -634,8 +737,8 @@
         <img src="screenshots/person_detail.png" alt="Person detail screen">
       </div>
       <div>
-        <span class="label">How it works</span>
-        <h2 style="margin-bottom: 40px;">Three steps to<br>better relationships</h2>
+        <span class="mono-label">How it works</span>
+        <h2 style="margin-bottom: 36px;">Three steps to<br>better relationships</h2>
         <div class="steps">
           <div class="step">
             <div class="step-num">1</div>
@@ -670,20 +773,20 @@
 <section class="health-section">
   <div class="container">
     <div class="health-inner">
-      <span class="label">Relationship health</span>
+      <span class="mono-label">Relationship health</span>
       <h2>Know exactly where you stand</h2>
-      <p style="color: var(--muted); max-width: 460px; text-align: center; margin-top: 8px;">
+      <p style="font-family: var(--font-title); color: var(--text2); max-width: 460px; text-align: center; margin-top: 8px; font-size: 15px; line-height: 1.7;">
         Every relationship gets a health score based on shared memories, vault depth, milestones, and how recently you connected.
       </p>
 
       <div class="health-ring-demo">
         <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="80" cy="80" r="70" stroke="#1D1D1D" stroke-width="12"/>
-          <circle cx="80" cy="80" r="70" stroke="#D4547A" stroke-width="12"
-            stroke-dasharray="351 439" stroke-linecap="round"
+          <circle cx="80" cy="80" r="66" stroke="#1D1D1D" stroke-width="12"/>
+          <circle cx="80" cy="80" r="66" stroke="#FF6A35" stroke-width="12"
+            stroke-dasharray="331 415" stroke-linecap="round"
             transform="rotate(-90 80 80)"/>
           <text x="80" y="87" text-anchor="middle"
-            font-family="Inter, sans-serif" font-size="28" font-weight="800" fill="#F5F5F5">80%</text>
+            font-family="Inter Tight, sans-serif" font-size="26" font-weight="700" fill="#F6F6F4">80%</text>
         </svg>
       </div>
 
@@ -710,21 +813,28 @@
 <!-- ── PRICING ───────────────────────────────────────────────── -->
 <section id="pricing">
   <div class="container">
-    <div style="text-align:center; margin-bottom: 60px;">
-      <span class="label">Pricing</span>
+    <div style="text-align:center; margin-bottom: 56px;">
+      <span class="mono-label">Pricing</span>
       <h2>Simple. Once. Forever.</h2>
     </div>
 
     <div class="pricing-card">
-      <div class="pricing-badge">LIMITED LAUNCH PRICE</div>
+      <div class="pricing-badge">
+        <span>LAUNCH OFFER · 50% OFF</span>
+      </div>
 
-      <h3 style="font-size: 22px; font-weight: 700;">Tye Lifetime</h3>
+      <div class="pricing-title">Tye Lifetime</div>
 
       <div class="pricing-price">
         <span class="old">$8</span>
         <span class="new">$4</span>
       </div>
-      <p class="pricing-note">One-time payment. Not a subscription.</p>
+
+      <div class="pricing-once">
+        <span>ONE-TIME · NOT A SUBSCRIPTION</span>
+      </div>
+
+      <p class="pricing-note">Pay once. Own Tye forever.<br>No monthly fees. No renewals.</p>
 
       <ul class="pricing-features">
         <li><span class="check">✓</span> Unlimited people and memories</li>
@@ -734,8 +844,8 @@
         <li><span class="check">✓</span> Fully private — no account required</li>
       </ul>
 
-      <a href="#download" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px; font-size: 17px;">
-        Download and try free for 30 days
+      <a href="#download" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px; font-size: 16px; border-radius: 14px;">
+        Get Tye for $4 — Lifetime access
       </a>
 
       <p class="pricing-sub">Start with a free 30-day trial. Purchase only if you love it.</p>
@@ -750,7 +860,7 @@
   <div class="container">
     <h2>The people who matter<br>deserve more than good intentions.</h2>
     <p>Start remembering what matters.</p>
-    <a href="#download" class="btn btn-primary" style="padding: 16px 40px; font-size: 17px;">
+    <a href="#download" class="btn btn-primary" style="padding: 16px 40px; font-size: 16px; border-radius: 14px;">
       Get Tye — Free trial
     </a>
   </div>
